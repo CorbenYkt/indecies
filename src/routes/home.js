@@ -13,6 +13,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { padding } from "@mui/system";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -67,11 +68,9 @@ export default function Home(coins) {
                 ))}
             </List> */}
             <TableContainer component={Paper}>
-
-                <Table sx={{ minWidth: '100%' }} aria-label="customized table">
+                <Table sx={{ maxWidth: '100%' }} >
                     <TableHead>
                         <TableRow>
-                            <StyledTableCell align="center">№</StyledTableCell>
                             <StyledTableCell align="center">Название</StyledTableCell>
                             <StyledTableCell align="center">Цена</StyledTableCell>
                             <StyledTableCell align="center">Изм.</StyledTableCell>
@@ -80,19 +79,17 @@ export default function Home(coins) {
                     <TableBody>
                         {coins.data.map((num, i = 0) => (
                             <StyledTableRow key={num.id}>
-                                <StyledTableCell align="center" component="th" scope="row">{i + 1}</StyledTableCell>
                                 <StyledTableCell align="center">
                                     <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' }}>
-
                                         <ListItemAvatar>
                                             <Avatar>
-                                                <p><img src={num.icon} alt="new" /></p>
+                                                <img src={num.icon} />
                                             </Avatar>
                                         </ListItemAvatar>
-                                        <p>{num.name}</p>
+                                        {num.name}
                                     </div>
                                 </StyledTableCell>
-                                <StyledTableCell align="center">{num.price}</StyledTableCell>
+                                <StyledTableCell align="center">{Math.round(num.price)}</StyledTableCell>
                                 <StyledTableCell align="center">{num.priceChange1d}</StyledTableCell>
                             </StyledTableRow>
                         ))}
